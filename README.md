@@ -103,7 +103,7 @@ git clone https://github.com/Bhargava999/CollegeAdmissionsProject.git
    For example:
 
 ```sh
-cd college-admissions-system
+cd CollegeAdmissionsProject
 ```
 
 3. Compile the Java Code
