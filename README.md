@@ -94,7 +94,7 @@ This is an example of how to list things you need to use the software and how to
 1. Clone the repo
 
 ```sh
-git clone https://github.com/your_username/college-admissions-system.git
+git clone https://github.com/Bhargava999/CollegeAdmissionsProject.git
 ```
 
 2. Navigate to the Project Directory
