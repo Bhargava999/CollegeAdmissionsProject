@@ -51,7 +51,7 @@ Once students have completed the registration process, they can conveniently che
 
 By entering this application ID, students gain access to real-time updates on their admission progress. They can monitor their application's status, from submission to acceptance or rejection. This transparency ensures that students are well-informed and reduces uncertainty throughout the admission process.
 
-### Admin Section
+## Admin Section
 
 #### Admin Login
 
