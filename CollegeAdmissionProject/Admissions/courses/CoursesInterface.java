@@ -30,6 +30,7 @@ public class CoursesInterface {
 				int total = sc.nextInt();
 				sc.nextLine(); // Consume the newline character left by nextInt()
 				course.setTotalSeats(total);
+				course.setAvailableSeats(total);
 
 				session.save(course);
 

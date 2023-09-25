@@ -2,59 +2,47 @@ package Admissions.authentication;
 
 import java.util.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 
 public class ValidateUser {
-	
-	public static boolean Validate() {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();	
-		
-	    // creating session object
-	     Session session = factory.openSession();
 
-	     // creating transaction object
-	     Transaction t = session.beginTransaction();
+	public static boolean Validate() {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+
+		// creating session object
+		Session session = factory.openSession();
+
+		// creating transaction object
+		Transaction t = session.beginTransaction();
 		System.out.println("-----Welcome to the login Section-----");
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter username ");
 		String user = sc.nextLine();
 		System.out.println("Enter Password ");
 		String pass = sc.nextLine();
-		//sc.close();
 		// Create a CriteriaBuilder
-		CriteriaBuilder builder = session.getCriteriaBuilder();
+		String hql = "FROM Login u WHERE u.username = :username AND u.password = :password";
+		TypedQuery<Login> query = session.createQuery(hql, Login.class);
+		query.setParameter("username", user);
+		query.setParameter("password", pass);
 
-		// Create a CriteriaQuery for the Login entity
-		CriteriaQuery<Login> criteriaQuery = builder.createQuery(Login.class);
-		Root<Login> root = criteriaQuery.from(Login.class);
+		// Execute the query and get the results
+		List<Login> results = query.getResultList();
 
-		// Add predicates to the query for username and password
-		criteriaQuery.where(
-		    builder.equal(root.get("username"), user),
-		    builder.equal(root.get("password"), pass)
-		);
-
-		// Execute the query
-		List<Login> results = session.createQuery(criteriaQuery).getResultList();
-		
 		boolean Status;
 
 		if (results.isEmpty()) {
-		    Status=false;
+			Status = false;
 		} else {
-		    Status=true;
+			Status = true;
 		}
 
 		t.commit();
 		session.close();
 		return Status;
-		
+
 	}
 }
-
-

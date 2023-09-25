@@ -14,7 +14,6 @@ public class App {
         try (Scanner scanner = new Scanner(System.in);) {
             int maxChances = 3; // Maximum number of chances to choose an option
             int chances = 0; // Counter for chances
-            boolean isAdminLoggedIn = false; // Flag to track admin login
 
             System.out.println("------Welcome to the Portal-------");
 
@@ -33,14 +32,13 @@ public class App {
                         break;
 
                     case 2:
-                        if (!isAdminLoggedIn) {
-                            if (ValidateUser.Validate()) {
-                                isAdminLoggedIn = true; // Admin logged in successfully
-                            } else {
-                                System.out.println("Login Failed");
-                                break; // Retry login
-                            }
+                        if (ValidateUser.Validate()) {
+                            // Admin logged in successfully
+                        } else {
+                            System.out.println("Login Failed");
+                            break; // Retry login
                         }
+
                         admissionSection(scanner);
                         break;
 
@@ -103,12 +101,13 @@ public class App {
             System.out.println("3.Display All Students with Allocated Seats");
             System.out.println("4.Display All Courses Details");
             System.out.println("5.Back to Main Menu");
-            System.out.println("Enter your Choice (1, 2, 3, or 4)");
+            System.out.println("Enter your Choice (1, 2, 3, 4 or 5)");
             int choice2 = scanner.nextInt();
             AdminInterface admin = new AdminInterface();
             switch (choice2) {
                 case 1:
                     CoursesInterface.addCourse();
+                    break;
                 case 2:
                     admin.AllocateCourse();
                     break;
